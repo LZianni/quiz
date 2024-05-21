@@ -9,12 +9,17 @@ type Props = {
 
 export const QuestionItem = ({ question, count, onAnswer }: Props) => {
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
+
     const checkQuestion = (key: number) => {
         if (selectedAnswer === null) {
             setSelectedAnswer(key)
-            onAnswer(key)
+            setTimeout(() => {
+                onAnswer(key)
+                setSelectedAnswer(null)
+            }, 1000)
         }
     }
+
     return (
         <div>
             <div className="text-3xl font-bold mb-5">{count}. {question.question}</div>
